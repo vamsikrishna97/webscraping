@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(stringr)\nlibrary(xml2)\nlibrary(rvest)\nlibrary(dplyr)\nlibrary(lubridate)\n\n#1 st problem\nurl <- \"https://www.sec.gov/foia/iareports/inva-archive.htm\"\npg <- read_html(url)\nlinks<- html_attr(html_nodes(pg, \"a\"), \"href\")\n\npg %>% html_nodes(\"a\") %>% html_text() \n\nlinks <-pg %>% html_nodes(\"a\") %>% html_attr(\"href\") \n\nsec <-as.data.frame(links) %>% filter(grepl(\".zip\",links))\n \nsec$type <- ifelse(grepl(\"exempt\",sec$links),\"Exempt\",\"Non-Exempt\")\n\n x<- str_match(sec$links, \"/foia/iareports/ia(.*?).zip\" )\n sec$date <- x[,2]\n x1 <- str_match( sec[sec$type==\"Exempt\",\"date\"],\"(.*?)-exempt\")\n sec[sec$type==\"Exempt\",\"date\"] <- x1[,2]\n \n \n #2nd problem\n \n \n ",
+    "created" : 1504352969438.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "635147762",
+    "id" : "D427CA06",
+    "lastKnownWriteTime" : 1504352546,
+    "last_content_update" : 1504352546,
+    "path" : "~/Documents/webscraping/secWS.R",
+    "project_path" : "secWS.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
