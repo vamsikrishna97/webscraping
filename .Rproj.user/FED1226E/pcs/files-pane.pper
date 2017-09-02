@@ -1,0 +1,9 @@
+{
+    "path" : "~/Documents/webscraping",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
